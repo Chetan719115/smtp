@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:email="http://www.mulesoft.org/schema/mule/email"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
+
+	<flow name="smtpFlow" doc:id="8ca7a681-af2a-489c-a16d-4ea4c389c89a" >
+		<http:listener doc:name="Listener" doc:id="a9ffd6ea-f310-4b02-88d7-652ae42e4329" config-ref="HTTP_Listener_config" path="/smtp"/>
+		<email:send doc:name="Send" doc:id="86b8327f-4e0d-4365-8afb-1874a6529225" config-ref="Email_SMTP" fromAddress="goudchetananadem@gmail.com" subject="Mailsentsuccesfully">
+			<email:to-addresses >
+				<email:to-address value="chetangoud402@gmail.com" />
+			</email:to-addresses>
+			<email:body >
+				<email:content ><![CDATA[#["SMTP SENT SUCCESSFULLY"]]]></email:content>
+			</email:body>
+		</email:send>
+		<logger level="INFO" doc:name="Logger" doc:id="10fbdc9c-a8a1-45b7-a102-26cd6810e4b1" message="mail sent successfully"/>
+	</flow>
+</mule>
